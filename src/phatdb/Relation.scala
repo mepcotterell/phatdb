@@ -6,11 +6,17 @@ object Relation {
 
 } // object Relation
 
-case class Relation (val name) {
+case class Relation (val _name: String) {
 
-  implicit val model = this
+  implicit val _model = this
 
-  val properties: Buffer[Property[_]] = ListBuffer.empty[Property[_]]
+  val _attributes: Buffer[Attribute[_]] = ListBuffer.empty[Attribute[_]]
+
+  val _tuples: Buffer[Array[_]] = ListBuffer.empty[Array[_]]
+
+  def degree () = _attributes.length
+
+  def cardinality () = _tuples.length
 
   def key () {}
 

@@ -1,8 +1,8 @@
 package phatdb
 
-case class Attribute [T] (val name: String) (implicit ord: Ordering[T], model: Model) extends Ordered[Attribute[T]] {
+case class Attribute [T] (val name: String) (implicit ord: Ordering[T], relation: Relation) extends Ordered[Attribute[T]] {
 
-  model.properties += this
+  relation._attributes += this
 
   private var value: T = _
 
@@ -12,13 +12,13 @@ case class Attribute [T] (val name: String) (implicit ord: Ordering[T], model: M
     this.value = value
   } // update
 
-  def compare (that: Attribure[T]) = ord.compare(this(), that())
+  def compare (that: Attribute[T]) = ord.compare(this(), that())
 
 } // case class Attribute
 
 object AttributeImplicits {
 
-  implicit def mkAttribute [T] (x: Property[T]) = x()
+  implicit def mkAttribute [T] (x: Attribute[T]) = x()
 
 } // object AttributeImplicits
 
