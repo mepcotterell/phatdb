@@ -1,6 +1,10 @@
 *.class
 *.log
 
+# emacs
+[#]*[#]
+*.scala~
+
 # sbt specific
 dist/*
 target/
